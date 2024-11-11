@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Riverpod Providers',
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
+      theme: AppTheme(isDarkmode: false).getTheme(),
     );
   }
 }
