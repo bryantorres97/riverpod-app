@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:riverpod_app/domain/domain.dart';
 
 class PokemonInformation {
   static Future<String> getPokemonName(int pokemonId) async {
@@ -9,7 +10,9 @@ class PokemonInformation {
       final response =
           await dio.get('https://pokeapi.co/api/v2/pokemon/$pokemonId');
 
-      return response.data['name'] ?? 'No se encontró el nombre del pokemon';
+      final pokemonData = pokemonInfoResponseFromJson(response.data);
+
+      return pokemonData.name;
     } catch (e) {
       return 'No se pudo obtener el nombre del pokemon';
     }
